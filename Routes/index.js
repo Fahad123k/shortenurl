@@ -1,9 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const urlRoutes = require('../Routes/UrlRoutes');
-const statsRoutes = require('./statsRoutes');
 
-router.use('/', urlRoutes);
-router.use('/', statsRoutes);
+//  must match file names exactly
+const urlRoute = require("./urlRoute");
+const statsRoute = require("./statsRoute");
+
+router.use("/", urlRoute);
+router.use("/", statsRoute);
 
 module.exports = router;
