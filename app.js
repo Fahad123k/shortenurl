@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const connectDB = require("./config/database");
 const securityMiddleware = require("./middleware/security");
 const limiter = require("./middleware/rateLimiter");
