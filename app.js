@@ -19,11 +19,15 @@ app.set('views', './views');
 app.use(securityMiddleware);
 app.use(bodyParser.json());
 app.use(limiter);
-app.use(bodyParser.urlencoded({ extended: true })); // For form data
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public')); // For static files
 
 
 // Routes
 app.use('/api', routes);
+
+app.get("/", function (req, res) {
+    res.status(200).json({ message: " okay" })
+})
 
 module.exports = app;

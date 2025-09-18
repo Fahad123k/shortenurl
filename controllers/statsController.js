@@ -18,6 +18,7 @@ exports.getStats = async (req, res) => {
             .limit(20)
             .select('timestamp -_id')
             .lean();
+
         const recentClicks = recent.map(r => r.timestamp);
 
         return res.json({
