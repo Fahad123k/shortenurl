@@ -1,4 +1,4 @@
 const app = require("../app");
+const serverless = require("serverless-http"); // need to install
 
-// Vercel uses this exported handler
-module.exports = app;
+module.exports = serverless(app);
