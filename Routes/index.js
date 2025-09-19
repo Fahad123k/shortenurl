@@ -5,7 +5,8 @@ const router = express.Router();
 const urlRoute = require("./urlRoute");
 const statsRoute = require("./statsRoute");
 
-router.use("/", urlRoute);
-router.use("/", statsRoute);
+router.use("/url", urlRoute);
+router.use("/stats", statsRoute);
+
 
 module.exports = router;
