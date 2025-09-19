@@ -4,6 +4,7 @@ const connectDB = require("./config/database");
 const securityMiddleware = require("./middleware/security");
 const limiter = require("./middleware/rateLimiter");
 const routes = require("./Routes/index");
+const cors = require("cors")
 
 const app = express();
 
