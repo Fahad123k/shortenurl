@@ -9,7 +9,7 @@ const idGen = require('../utils/idGenerator');
 const encodeBase62 = require('../utils/base62');
 const redis = require('../config/redis');
 
-const BASE_HOST = process.env.BASE_HOST || 'http://localhost:3000';
+const BASE_HOST = process.env.BASE_HOST
 
 // Helper: extract domain from referrer header
 function domainFromReferrer(ref) {
