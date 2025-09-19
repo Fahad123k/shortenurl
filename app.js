@@ -11,10 +11,15 @@ const app = express();
 connectDB();
 
 // Middleware
+app.use(cors({
+    origin: "http://localhost:5173/",
+    credentials: true,
+}))
 app.use(securityMiddleware);
 app.use(bodyParser.json());
 app.use(limiter);
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 // Routes
