@@ -61,7 +61,7 @@ exports.shortenUrl = async (req, res) => {
         clickCount: 0 (starts with zero clicks). 
         */
         await Analytics.create({ shortId, clickCount: 0 });
-        const routeLink = 'url/api'
+        const routeLink = 'api/url'
         const shortUrl = `${routeLink}/${shortId}`;
 
         return res.json({ shortUrl, shortId });
