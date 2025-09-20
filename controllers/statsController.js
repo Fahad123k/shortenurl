@@ -2,12 +2,17 @@ const Analytics = require('../models/Analytics');
 const Referrer = require('../models/Referrer');
 const Click = require('../models/Click');
 
+const Url = require("../models/Url")
+
 exports.getStats = async (req, res) => {
     const shortId = req.params.shortId;
     if (!shortId) return res.status(400).json({ error: 'shortId required' });
 
     try {
-        const analytics = await Analytics.findOne({ shortId }).lean();
+        const analytics = await Analytics.findOne({ shortId }).lean().populate(Url, { shortId });
+        const longUrl = await Url.findOne({ shortId }).select("longUrl").lean();
+
+
         if (!analytics) return res.status(404).json({ error: 'not found' });
 
         const top = await Referrer.find({ shortId }).sort({ count: -1 }).limit(5).lean();
@@ -36,6 +41,7 @@ exports.getStats = async (req, res) => {
 
         return res.json({
             shortId,
+            longUrl,
             clickCount: analytics.clickCount || 0,
             lastAccessed: analytics.lastAccessed,
             topReferrers,
