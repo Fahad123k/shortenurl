@@ -16,17 +16,31 @@ exports.getStats = async (req, res) => {
         const recent = await Click.find({ shortId })
             .sort({ timestamp: -1 })
             .limit(20)
-            .select('timestamp -_id')
+            .select('timestamp ip -_id')
             .lean();
 
-        const recentClicks = recent.map(r => r.timestamp);
+
+        const recentClicks = {};
+        recent.forEach((r, index) => {
+            recentClicks[`Click ${index + 1}`] = {
+                timestamp: r.timestamp,
+                ip: r.ip || "Unknown"
+            };
+        });
+        ;
+
+
+        // Unique visitors (based on IP)
+        const uniqueIps = await Click.distinct('ip', { shortId });
+        const uniqueVisitors = uniqueIps.length;
 
         return res.json({
             shortId,
             clickCount: analytics.clickCount || 0,
             lastAccessed: analytics.lastAccessed,
             topReferrers,
-            recentClicks
+            recentClicks,
+            uniqueVisitors
         });
     } catch (err) {
         console.error('stats error', err);
