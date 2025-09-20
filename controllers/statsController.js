@@ -2,7 +2,7 @@ const Analytics = require('../models/Analytics');
 const Referrer = require('../models/Referrer');
 const Click = require('../models/Click');
 
-const Url = require("../models/Url")
+const Url = require("../models/myUrl")
 
 exports.getStats = async (req, res) => {
     const shortId = req.params.shortId;
