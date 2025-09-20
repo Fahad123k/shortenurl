@@ -13,7 +13,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-    origin: ["http://localhost:5173", "https://shortly-mybb.onrender.com/", "https://ai-short.netlify.app/"],
+    origin: [ "https://shortly-mybb.onrender.com", "https://ai-short.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     // credentials: true,
 }))
